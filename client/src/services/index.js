@@ -14,9 +14,9 @@ const getSinglePackage = async (id) => {
   return response.data;
 };
 
-const updataPackage = async (id, updatedPackage) => {
+const updatePackage = async (id, updatedPackage) => {
   const response = await axios.put(`${baseUrl}/${id}`, updatedPackage);
   return response.data;
 };
 
-export { getPackages, getSinglePackage, updataPackage };
+export { getPackages, getSinglePackage, updatePackage };

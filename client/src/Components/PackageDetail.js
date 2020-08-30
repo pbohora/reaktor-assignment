@@ -2,7 +2,12 @@ import React, { useState, useEffect } from "react";
 //import { getPackages, getSinglePackage, updataPackage } from "./services";
 import { Link, useParams } from "react-router-dom";
 
-const PackageDetail = ({ packages }) => {
+const PackageDetail = ({
+  packages,
+  handleChange,
+  inputState,
+  handleSubmit,
+}) => {
   const name = useParams().name;
 
   const singlePackage = packages.find(
@@ -56,18 +61,25 @@ const PackageDetail = ({ packages }) => {
               ))}
           </ul>
           Add Notes:
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={(e) => handleSubmit(e, singlePackage.id)}>
             <textarea
               placeholder="Notes"
               rows="10"
               cols="100"
-              onChange={handleInputChange}
+              name="note"
+              value={inputState.note}
+              onChange={handleChange}
             />
             <button>Add Note</button>
           </form>
           Add Tags:
-          <form onSubmit={handleSubmit}>
-            <input placeholder="Tag" onChange={handleInputChange} />
+          <form onSubmit={(e) => handleSubmit(e, singlePackage.id)}>
+            <input
+              placeholder="Tag"
+              name="tag"
+              value={inputState.tag}
+              onChange={handleChange}
+            />
             <button>Add Tag</button>
           </form>
         </div>
