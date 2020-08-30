@@ -5,6 +5,7 @@ const config = require("./utils/config");
 
 const connectDb = require("./db/database");
 
+//db connection
 connectDb()
   .then(() => {
     console.log("Databse is connected");
@@ -13,6 +14,7 @@ connectDb()
     console.log("error connecting database");
   });
 
+//create server
 const server = http.createServer(app);
 
 server.listen(config.PORT, () => {
