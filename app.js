@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
+const path = require("path");
 
 const bodyParser = require("body-parser");
 const packageRouter = require("./controllers/package");
@@ -77,11 +78,12 @@ app.use(bodyParser.json());
 // };
 
 app.use(express.static("client/build"));
+
+app.use("/api/packages", packageRouter);
+
 app.get("*", (request, response) => {
   response.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
-
-app.use("/api/packages", packageRouter);
 
 const PORT = process.env.PORT || 3001;
 
