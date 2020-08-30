@@ -76,6 +76,8 @@ app.use(bodyParser.json());
 //   }
 // };
 
+app.use(express.static("client/build"));
+
 app.use("/api/packages", packageRouter);
 
 const PORT = process.env.PORT || 3001;
