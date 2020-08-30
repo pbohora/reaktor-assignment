@@ -1,29 +1,34 @@
 const packageRouter = require("express").Router();
+const services = require("../services/packageService");
 const PackageObj = require("../db/models/packageModel");
 
-packageRouter.get("/", async (request, response, next) => {
-  const packages = await PackageObj.find({});
-  response.status(200).json(packages.map((package) => package.toJSON()));
+packageRouter.get("/", async (_request, response) => {
+  try {
+    const packageData = await services.queryPackages();
+    response.status(200).json(packageData);
+  } catch (error) {
+    resp.status(400).json({ error });
+  }
 });
 
-packageRouter.put("/:id", async (request, response, next) => {
+packageRouter.put("/:id", async (request, response) => {
   const { tagBody, noteBody } = request.body;
-  const updatePackage = await PackageObj.findById(request.params.id);
-
-  if (tagBody) {
-    updatePackage.tags = updatePackage.tags.concat(tagBody);
+  const { id } = request.params;
+  try {
+    const updatedPackage = await services.updatePackage(id, tagBody, noteBody);
+    response.status(200).json(updatedPackage);
+  } catch (error) {
+    res.status(400).json({ error });
   }
-  if (noteBody) {
-    updatePackage.note = updatePackage.note.concat(noteBody);
-  }
-  const updatedPackage = await updatePackage.save();
-
-  response.status(200).json(updatedPackage.toJSON());
 });
 
-packageRouter.get("/:id", async (request, response, next) => {
-  const singlePackage = await PackageObj.findById(request.params.id);
-  response.status(200).json(singlePackage.toJSON());
+packageRouter.get("/:id", async (_request, response) => {
+  try {
+    const packageData = await services.queryPackage();
+    response.status(200).json(packageData);
+  } catch (error) {
+    response.status(400).json({ error });
+  }
 });
 
 module.exports = packageRouter;

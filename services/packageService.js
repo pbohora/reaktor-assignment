@@ -1,18 +1,18 @@
 const PackageObj = require("../db/models/packageModel");
 
-export const queryPackages = async () => {
+const queryPackages = async () => {
   try {
     const packages = await PackageObj.find({});
-    return packages.map((package) => package.toJSON());
+    return packages.map((packageData) => packageData.toJSON());
   } catch (error) {
     return error;
   }
 };
 
-export const queryPackage = async (id) => {
+const queryPackage = async (id) => {
   try {
-    const package = await PackageObj.findById(id);
-    return package.toJSON();
+    const packageData = await PackageObj.findById(id);
+    return packageData.toJSON();
   } catch (error) {
     return error;
   }
@@ -20,17 +20,19 @@ export const queryPackage = async (id) => {
 
 const updatePackage = async (id, tag, note) => {
   try {
-    const package = await queryPackage(id);
+    const packageData = await PackageObj.findById(id);
     if (tag) {
-      updatePackage.tags = package.tags.concat(tagBody);
+      packageData.tags = packageData.tags.concat(tag);
     }
     if (note) {
-      updatePackage.note = package.note.concat(noteBody);
+      packageData.note = packageData.note.concat(note);
     }
-    const updatedPackage = await updatePackage.save();
+    const updatedPackage = await packageData.save();
 
     return updatedPackage.toJSON();
   } catch (error) {
     return error;
   }
 };
+
+module.exports = { queryPackages, queryPackage, updatePackage };

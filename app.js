@@ -68,11 +68,11 @@ app.use(express.static("client/build"));
 
 app.use("/api/packages", packageRouter);
 
-app.get("*", (request, response) => {
+app.get("*", (_request, response) => {
   response.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
 
-app.use(function (_req, res) {
+app.use(function (_request, response) {
   return res.status(404).send({ error: "unknown endpoint" });
 });
 
