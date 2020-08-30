@@ -20,7 +20,7 @@ mongoose
   .connect(MONGODB_URI, { useNewUrlParser: true })
   .then(() => console.log("connected to the database"))
   .catch((error) =>
-    console.Console.log("error connecting to mongoDB: ", error.message)
+    console.log("error connecting to mongoDB: ", error.message)
   );
 
 app.use(cors());
