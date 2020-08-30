@@ -16,4 +16,9 @@ packageRouter.put("/:id", async (request, response, next) => {
   response.status(200).json(updatedPackage.toJSON());
 });
 
+packageRouter.get("/:id", async (request, response, next) => {
+  const package = await Package.findById(request.params.id);
+  response.status(200).json(package.toJSON());
+});
+
 module.exports = packageRouter;
