@@ -1,5 +1,5 @@
 const packageRouter = require("express").Router();
-const PackageObj = require("../models/packageModel");
+const PackageObj = require("../db/models/packageModel");
 
 packageRouter.get("/", async (request, response, next) => {
   const packages = await PackageObj.find({});
