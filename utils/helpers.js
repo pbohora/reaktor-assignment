@@ -22,8 +22,7 @@ const dataToObjArray = () => {
     //check if the db is empty or not and only save packages if the db is empty
     if (packageList.length < 1) {
       packageArray.map(async (a) => {
-        const abb = await services.savePackageToDb(a);
-        console.log(abb);
+        await services.savePackageToDb(a);
       });
     }
   });
