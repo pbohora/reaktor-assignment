@@ -62,7 +62,7 @@ npm start
 ``` 
 this will run the forntend at `http://localhost:3000`
 
-For production:
+#### 5. For production:
 - From the root of the application run:
 
 ```
