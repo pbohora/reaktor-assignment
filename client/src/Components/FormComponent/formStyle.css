@@ -1,0 +1,15 @@
+input {
+  width: 70%;
+  height: 20px;
+  font-size: 18px;
+  padding: 12px;
+  margin: 12px;
+}
+
+.inputBotton {
+  width: 20%;
+  height: 48px;
+  font-size: 18px;
+  padding: 12px;
+  background-color: rgb(84, 179, 235);
+}

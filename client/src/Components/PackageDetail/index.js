@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
-//import { getPackages, getSinglePackage, updataPackage } from "./services";
+import React from "react";
 import { Link, useParams } from "react-router-dom";
+import FormComponent from "../FormComponent";
+
+import "./packageDetail.css";
 
 const PackageDetail = ({
   packages,
@@ -61,27 +63,28 @@ const PackageDetail = ({
               ))}
           </ul>
           Add Notes:
-          <form onSubmit={(e) => handleSubmit(e, singlePackage.id)}>
+          <form
+            className="textArea-container"
+            onSubmit={(e) => handleSubmit(e, singlePackage.id)}
+          >
             <textarea
               placeholder="Notes"
-              rows="10"
-              cols="100"
+              rows="6"
               name="note"
               value={inputState.note}
               onChange={handleChange}
             />
-            <button>Add Note</button>
+            <button className="textArea-button">Add Note</button>
           </form>
           Add Tags:
-          <form onSubmit={(e) => handleSubmit(e, singlePackage.id)}>
-            <input
-              placeholder="Tag"
-              name="tag"
-              value={inputState.tag}
-              onChange={handleChange}
-            />
-            <button>Add Tag</button>
-          </form>
+          <FormComponent
+            placeholder="Tag"
+            name="tag"
+            value={inputState.tag}
+            handleChange={handleChange}
+            handleSubmit={(e) => handleSubmit(e, singlePackage.id)}
+            buttonTag="Add Tag"
+          />
         </div>
       )}
     </div>

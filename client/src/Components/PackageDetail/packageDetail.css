@@ -1,0 +1,19 @@
+.textArea-container {
+  display: flex;
+  flex-direction: column;
+  margin: 8px;
+  font-size: 18px;
+}
+textarea {
+  font-size: 18px;
+  padding: 12px;
+}
+.textArea-button {
+  align-self: flex-end;
+  width: 20%;
+  height: 48px;
+  font-size: 18px;
+  padding: 12px;
+  background-color: rgb(84, 179, 235);
+  margin-top: 8px;
+}

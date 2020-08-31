@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { getPackages, getSinglePackage, updatePackage } from "./services";
-import { Switch, Route, Link } from "react-router-dom";
+import { getPackages, updatePackage } from "./services";
+import { Switch, Route } from "react-router-dom";
 
 import PackageDetail from "./Components/PackageDetail";
 import PackageList from "./Components/PackageList";
@@ -11,10 +11,16 @@ const App = () => {
   const [inputState, setInputState] = useState({ note: "", tag: "" });
   const [filterTag, setFilterTag] = useState("");
 
+  //query all packages from server on first load of the page then sort the packages
+  // and update the package state
   useEffect(() => {
-    getPackages().then((data) => setPackages(data));
+    getPackages().then((data) => {
+      const sortedPackages = sortData(data);
+      setPackages(sortedPackages);
+    });
   }, []);
 
+  //handle input change for notes and tags
   const handleChange = (e) => {
     const value = e.target.value;
     setInputState({
@@ -23,20 +29,24 @@ const App = () => {
     });
   };
 
+  //handle submit for notes and tags
   const handleSubmit = async (e, id) => {
     e.preventDefault();
     const newObj = {
       noteBody: inputState.note,
       tagBody: inputState.tag.toLocaleLowerCase(),
     };
-    const updatedPackage = await updatePackage(id, newObj);
-    setPackages(packages.map((p) => (p.id !== id ? p : updatedPackage)));
+    const updatedPackage = await updatePackage(id, newObj); //save added noted and tags to the database
+    setPackages(packages.map((p) => (p.id !== id ? p : updatedPackage))); //updata the package state
+    setInputState({ note: "", tag: "" });
   };
 
+  //handle change for filter input
   const handleFilterChange = (e) => {
     setFilterTag(e.target.value);
   };
 
+  //
   const handleFilterSubmit = (e) => {
     e.preventDefault();
     setPackages(
@@ -46,12 +56,16 @@ const App = () => {
       )
     );
   };
-  packages.sort((a, b) => {
-    if (a.packageName < b.packageName) return -1;
-    if (a.packageName > b.packageName) return 1;
-    return 0;
-  });
-  console.log(packages);
+
+  //sort the packages alphabetically
+  const sortData = (data) => {
+    const sortedData = data.sort((a, b) => {
+      if (a.packageName < b.packageName) return -1;
+      if (a.packageName > b.packageName) return 1;
+      return 0;
+    });
+    return sortedData;
+  };
 
   return (
     <Switch>

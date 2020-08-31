@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import FormComponent from "../FormComponent";
 
 const PackageList = ({
   packages,
@@ -11,15 +12,14 @@ const PackageList = ({
     <div>
       <h1>Packages List</h1>
       <h2>Filter with Tag</h2>
-      <form onSubmit={handleFilterSubmit}>
-        <input
-          placeholder="Tag"
-          name="filterTag"
-          value={filterTag}
-          onChange={handleFilterChange}
-        />
-        <button>Search</button>
-      </form>
+      <FormComponent
+        placeholder="Search"
+        name="filterTag"
+        value={filterTag}
+        handleChange={handleFilterChange}
+        handleSubmit={handleFilterSubmit}
+        buttonTag="Search"
+      />
       <ul>
         {packages.map((pack) => (
           <li key={pack.id}>

@@ -2,7 +2,7 @@ import axios from "axios";
 
 const baseUrl = "/api/packages";
 
-//fetch data from server with axios
+//query data from server with axios
 
 const getPackages = async () => {
   const response = await axios.get(baseUrl);
