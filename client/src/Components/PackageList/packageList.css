@@ -1,0 +1,7 @@
+.list-cotainer {
+  list-style-type: none;
+}
+.list-cotainer li {
+  font-size: 26px;
+  padding: 12px 0px;
+}

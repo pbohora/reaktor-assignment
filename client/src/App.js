@@ -4,10 +4,9 @@ import { Switch, Route } from "react-router-dom";
 
 import PackageDetail from "./Components/PackageDetail";
 import PackageList from "./Components/PackageList";
-import "./App.css";
 
 const App = () => {
-  const [packages, setPackages] = useState([]);
+  const [packages, setPackages] = useState({ isLoading: true, data: [] });
   const [inputState, setInputState] = useState({ note: "", tag: "" });
   const [filterTag, setFilterTag] = useState("");
 
@@ -16,7 +15,7 @@ const App = () => {
   useEffect(() => {
     getPackages().then((data) => {
       const sortedPackages = sortData(data);
-      setPackages(sortedPackages);
+      setPackages({ isLoading: false, data: sortedPackages });
     });
   }, []);
 

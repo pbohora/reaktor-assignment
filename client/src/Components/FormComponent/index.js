@@ -17,7 +17,9 @@ const FormComponent = ({
         value={value}
         onChange={handleChange}
       />
-      <button className="inputBotton">{buttonTag}</button>
+      <button className="inputBotton" type="submit">
+        {buttonTag}
+      </button>
     </form>
   );
 };
