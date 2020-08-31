@@ -11,6 +11,7 @@ const PackageList = ({
   handleFilterSubmit,
   filteredPackages,
 }) => {
+  //list render
   const listRender = (packages) => {
     return packages.map((pack) => (
       <li key={pack.id}>

@@ -49,13 +49,12 @@ const App = () => {
     setFilterTag(e.target.value);
   };
 
-  //
+  //filter the packages and update filter state
   const handleFilterSubmit = (e) => {
     e.preventDefault();
     setFilteredPackages(
-      packages.data.filter(
-        (p) =>
-          filterTag === "" || p.tags.includes(filterTag.toLowerCase().trim())
+      packages.data.filter((p) =>
+        p.tags.includes(filterTag.toLowerCase().trim())
       )
     );
   };
