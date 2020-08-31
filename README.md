@@ -14,11 +14,11 @@ A web aplication that renders all the software packages that the Debian and Ubun
  - Filter the packages according to the tag
  
  #### Stack and Working Methodology
- The application uses NodeJS and ReactJs for the development and MongoDB ofr database management. 
-- There is a data.txt file in the roor of the Application which contains all the packages informantion. 
+ The application uses NodeJS and ReactJs for the development and MongoDB for database management. 
+- There is a data.txt file in the root of the Application which contains all the packages informantion. 
 - With the help of Nodejs fs the application reads all the data and change it into array of objects and save to the database
  The server contains various services to get and update the packages
-- In the front React queries the data from the server with the help of Axios and render it in the page.
+- In the front-end React queries the data from the server with the help of Axios and render it in the page.
 
 ## Quick start
 
@@ -48,7 +48,7 @@ npm start
 ```
 Your site is now running at `http://localhost:3001`
 
-or you can also run the backend and frontend separately with the following commands
+or you can also run the backend and frontend separately with the following commands,
 form the root of the project run
 ```
 npm run dev
@@ -62,8 +62,16 @@ npm start
 ``` 
 this will run the forntend at `http://localhost:3000`
 
-and for production
+For production:
+- From the root of the application run:
+
 ```
+npm start 
+```
+*This will run the production node app*  
+- For the front-end build, run the following command
+```
+cd client
 npm run build
 ```
 
