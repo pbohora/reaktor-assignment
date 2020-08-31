@@ -20,14 +20,14 @@ const queryPackage = async (id) => {
 
 const savePackageToDb = async (package) => {
   try {
-    const packageObj = new Package({
+    const packageObj = new PackageObj({
       packageName: package.Package,
       description: package.Description,
       dependsOn: package.Depends,
       reverseDependency: package.reverseDependency,
     });
 
-    await packageObj.save();
+    return await packageObj.save();
   } catch (error) {
     return error;
   }

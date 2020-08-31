@@ -2,8 +2,8 @@ const fs = require("fs");
 const services = require("../services/packageService");
 
 const dataToObjArray = () => {
-  fs.readFile("data.txt", function (_err, data) {
-    const packageList = services.queryPackages();
+  fs.readFile("data.txt", async function (_err, data) {
+    const packageList = await services.queryPackages();
 
     //change to string, replace carriage return and split the string in each line breacks
     const arrayList = data
@@ -21,8 +21,9 @@ const dataToObjArray = () => {
 
     //check if the db is empty or not and only save packages if the db is empty
     if (packageList.length < 1) {
-      arr.map((a) => {
-        services.savePackageToDb(a);
+      packageArray.map(async (a) => {
+        const abb = await services.savePackageToDb(a);
+        console.log(abb);
       });
     }
   });
