@@ -1,7 +1,7 @@
 # reacktor-assignment
 The live demo is available here: https://damp-woodland-60966.herokuapp.com/
 
-A web aplication that renders all the software packages that the Debian and Ubuntu systems 
+A web aplication that renders all the software packages that the Debian and Ubuntu systems knows about 
 #### Features
 - The index page lists installed packages alphabetically with package names as links.
 - When following each link, you arrive at a piece of information about a single package. The following information are included:
