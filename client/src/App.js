@@ -36,7 +36,10 @@ const App = () => {
       tagBody: inputState.tag.toLocaleLowerCase(),
     };
     const updatedPackage = await updatePackage(id, newObj); //save added noted and tags to the database
-    setPackages(packages.map((p) => (p.id !== id ? p : updatedPackage))); //updata the package state
+    setPackages({
+      isLoading: false,
+      data: packages.data.map((p) => (p.id !== id ? p : updatedPackage)),
+    }); //update the package state
     setInputState({ note: "", tag: "" });
   };
 
