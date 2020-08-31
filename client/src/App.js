@@ -7,6 +7,7 @@ import PackageList from "./Components/PackageList";
 
 const App = () => {
   const [packages, setPackages] = useState({ isLoading: true, data: [] });
+  const [filteredPackages, setFilteredPackages] = useState([]);
   const [inputState, setInputState] = useState({ note: "", tag: "" });
   const [filterTag, setFilterTag] = useState("");
 
@@ -51,8 +52,8 @@ const App = () => {
   //
   const handleFilterSubmit = (e) => {
     e.preventDefault();
-    setPackages(
-      packages.filter(
+    setFilteredPackages(
+      packages.data.filter(
         (p) =>
           filterTag === "" || p.tags.includes(filterTag.toLowerCase().trim())
       )
@@ -77,6 +78,7 @@ const App = () => {
           handleFilterChange={handleFilterChange}
           handleFilterSubmit={handleFilterSubmit}
           filterTag={filterTag}
+          filteredPackages={filteredPackages}
         />
       </Route>
       <Route path="/package/:name">

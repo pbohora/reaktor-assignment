@@ -9,7 +9,16 @@ const PackageList = ({
   filterTag,
   handleFilterChange,
   handleFilterSubmit,
+  filteredPackages,
 }) => {
+  const listRender = (packages) => {
+    return packages.map((pack) => (
+      <li key={pack.id}>
+        <Link to={`/package/${pack.packageName}`}>{pack.packageName}</Link>
+      </li>
+    ));
+  };
+
   return (
     <div>
       <h1>Packages List</h1>
@@ -27,13 +36,9 @@ const PackageList = ({
             buttonTag="Search"
           />
           <ul className="list-cotainer">
-            {packages.data.map((pack) => (
-              <li key={pack.id}>
-                <Link to={`/package/${pack.packageName}`}>
-                  {pack.packageName}
-                </Link>
-              </li>
-            ))}
+            {filteredPackages.length > 0
+              ? listRender(filteredPackages)
+              : listRender(packages.data)}
           </ul>
         </>
       )}
