@@ -77,7 +77,7 @@ const PackageDetail = ({
                 <li key={index}>{tag}</li>
               ))}
           </ul>
-          Add Notes:
+          <h3>Add Notes:</h3>
           <form
             className="textArea-container"
             onSubmit={(e) => handleSubmit(e, singlePackage.id)}
@@ -91,7 +91,7 @@ const PackageDetail = ({
             />
             <button className="textArea-button">Add Note</button>
           </form>
-          Add Tags:
+          <h3>Add Tags:</h3>
           <FormComponent
             placeholder="Tag"
             name="tag"
